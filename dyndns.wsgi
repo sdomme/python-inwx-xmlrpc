@@ -1,6 +1,33 @@
 #!/usr/bin/env python
 # -*- encoding: UTF8 -*-
 
+# author: Philipp Klaus, philipp.klaus →AT→ gmail.com
+# author: Markus Roth,   mail →AT→ rothmark.us
+# author: Sergej Domme,  sergej →AT→ domme.it
+
+# This file is part of python-inwx-xmlrpc.
+#
+# python-inwx-xmlrpc is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# python-inwx-xmlrpc is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with python-inwx-xmlrpc. If not, see <http://www.gnu.org/licenses/>.
+
+#####################################################################
+######   This is an example of how to use the inwx class to   #######
+######   update a DNS entry via the InterNetworX XMLRPC API.  #######
+######   It is a wsgi script, so you can put it on your       #######
+######   WebServer with the wsgi module. You can call it from #######
+######   everywhere to update the DNS record with the callers #######
+######   IP address                                           #######
+
 import sys, os
 sys.path.append(os.path.dirname(__file__))
 
