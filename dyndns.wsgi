@@ -77,3 +77,59 @@ def application(environ, start_response):
     response_headers = [('Content-type', 'text/plain'), ('Content-Length', str(len(response_body)))]
     start_response(status, response_headers)
     return [response_body]
+
+'''
+###
+### Configuration exmaple for Apache
+###
+
+WSGIPythonPath /usr/share/python-inwx-xmlrpc
+
+<VirtualHost *:80>
+        ServerAdmin webmaster@example.com
+        ServerName dyndns.example.com
+        ServerPath /
+
+        <Location />
+                Options -Indexes +FollowSymLinks
+                Require all granted
+        </Location>
+
+        RewriteEngine on
+        RewriteCond %{HTTPS} off
+        RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+        DirectoryIndex index.php
+
+        ErrorLog logs/dyndns_error.log
+        CustomLog logs/dyndns_access.log combined
+</VirtualHost>
+<VirtualHost *:443>
+        ServerAdmin webmaster@example.com
+        ServerName dyndns.example.com
+        ServerPath /
+        DocumentRoot "/usr/share/python-inwx-xmlrpc"
+
+        SSLEngine on
+
+        SSLCipherSuite AES256+EECDH:AES256+EDH
+        SSLProtocol All -SSLv2 -SSLv3
+
+        SSLCertificateFile /etc/pki/tls/certs/cert.pem
+        SSLCertificateKeyFile /etc/pki/tls/private/mail.key
+        SSLCertificateChainFile /etc/pki/tls/certs/chain.pem
+
+        WSGIScriptAlias / /usr/share/python-inwx-xmlrpc/example.dyndns-by-webcall.py
+
+        <Directory /usr/share/python-inwx-xmlrpc>
+                AuthType Basic
+                AuthName "Password Required"
+                AuthUserFile /etc/httpd/.htpasswd
+                Require valid-user
+        </Directory>
+
+        ErrorLog logs/dyndns_error.log
+        CustomLog logs/dyndns_access.log combined
+</VirtualHost>
+
+'''
